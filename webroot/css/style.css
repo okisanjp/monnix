@@ -17,20 +17,24 @@ h3 {
 	font-size: 50px;
 }
 
-p.count {
-	font-size: 240px;
-	font-weight: 800;
-	color: #666;
+p.count_zero {
+	color: #333 !important;
 }
 
-p.count_red {
+p.count_danger {
+	font-size: 240px;
+	font-weight: 800;
 	color: #d9534f;
 }
 
-p.count_orange {
+p.count_warning {
+	font-size: 120px;
+	font-weight: 800;
 	color: #f0ad4e;
 }
 
-p.count_blue {
+p.count_info {
+	font-size: 120px;
+	font-weight: 800;
 	color: #5bc0de;
 }

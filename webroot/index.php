@@ -36,22 +36,30 @@ try {
 					'value' => 1 
 			) 
 	) );
-	$count_red = 0;
-	$count_orange = 0;
-	$count_blue = 0;
+	$count_1 = 0;
+$count_2 = 0;
+	$count_3 = 0;
+	$count_4 = 0;
+	$count_5 = 0;
 	foreach ( $trigger as $t ) {
 		$triggerObj = $api->triggerGetobjects ( array (
 				'triggerid' => $t->triggerid 
 		) );
 		switch ($triggerObj [0]->priority) {
+case "5" :
+	$count_5 ++;
+	break;
+case "4" :
+	$count_4 ++;
+	break;
 			case "3" :
-				$count_red ++;
+				$count_3 ++;
 				break;
 			case "2" :
-				$count_orange ++;
+				$count_2 ++;
 				break;
 			case "1" :
-				$count_blue ++;
+				$count_1 ++;
 				break;
 			default :
 		}
@@ -63,23 +71,35 @@ try {
 }
 ?>
 
-<div class="col-md-4">
+<div class="col-md-3">
 		<h3>
-			<span class="label label-danger">EMERG</span>
+			<span class="label label-danger">DISA</span>
 		</h3>
-		<p class="count<?php if($count_red <> 0){ echo " count_red";}?>"><?php echo $count_red;?></p>
+		<p class="count_danger<?php if($count_5 < 1){ echo " count_zero";}?>"><?php echo $count_5;?></p>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-3">
+		<h3>
+			<span class="label label-danger">HIGH</span>
+		</h3>
+		<p class="count_danger<?php if($count_4 < 1){ echo " count_zero";}?>"><?php echo $count_4;?></p>
+	</div>
+	<div class="col-md-2">
+		<h3>
+			<span class="label label-warning">AVER</span>
+		</h3>
+		<p class="count_warning<?php if($count_3 < 1){ echo " count_zero";}?>"><?php echo $count_3;?></p>
+	</div>
+	<div class="col-md-2">
 		<h3>
 			<span class="label label-warning">WARN</span>
 		</h3>
-		<p class="count<?php if($count_orange <> 0){ echo " count_orange";}?>"><?php echo $count_orange;?></p>
+		<p class="count_warning<?php if($count_2 < 1){ echo " count_zero";}?>"><?php echo $count_2;?></p>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-2">
 		<h3>
 			<span class="label label-info">INFO</span>
 		</h3>
-		<p class="count<?php if($count_blue <> 0){ echo " count_blue";}?>"><?php echo $count_blue;?></p>
+		<p class="count_info<?php if($count_1 < 1){ echo " count_zero";}?>"><?php echo $count_1;?></p>
 	</div>
 </div>
 <
