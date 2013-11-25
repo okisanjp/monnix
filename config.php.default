@@ -1,0 +1,5 @@
+<?php
+// rename to config.php for use
+$zabbix_server_urlbase = "http://example.com";
+$username = "USERNAME";
+$password = "PASSWORD";
