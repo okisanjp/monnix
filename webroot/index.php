@@ -30,7 +30,13 @@ try {
 	$api = new ZabbixApi ( $zabbix_server_urlbase . '/zabbix/api_jsonrpc.php', $username, $password );
 	// get trigger
 	$trigger = $api->triggerGet ( array (
-			"monitored" => 1,
+			'monitored' => 1,
+			'expandData' => 1,
+			'output' => array (
+					"triggerid",
+					"description",
+					"priority"
+			),
 			'filter' => array (
 					'status' => 0,
 					'value' => 1 
@@ -41,37 +47,48 @@ try {
 	$count_3 = 0;
 	$count_4 = 0;
 	$count_5 = 0;
+	$desc = '<table class="table">';
 	foreach ( $trigger as $t ) {
-		$triggerObj = $api->triggerGetobjects ( array (
-				'triggerid' => $t->triggerid 
-		) );
-		switch ($triggerObj [0]->priority) {
-			case "5" :
+		$prioryty = $t->priority;
+		switch ($prioryty) {
+			case '5' :
 				$count_5 ++;
+				$level = "DISA";
+				$facility = 'danger';
 				break;
-			case "4" :
+			case '4' :
 				$count_4 ++;
+				$level = "HIGH";
+				$facility = 'danger';
 				break;
-			case "3" :
+			case '3' :
 				$count_3 ++;
+				$level = "AVER";
+				$facility = 'warning';
 				break;
-			case "2" :
+			case '2' :
 				$count_2 ++;
+				$level = "WARN";
+				$facility = 'warning';
 				break;
-			case "1" :
+			case '"1' :
 				$count_1 ++;
+				$level = "INFO";
+				$facility = 'info';
 				break;
 			default :
 		}
+		$desc .= '<tr><td><span class="label label-' . $facility . '">' . $level . '</span></td><td><strong>'.$t->hostname.'</strong></td><td>' . $t->description . '</td></tr>';
 	}
-	// var_dump ( $trigger );
+	//var_dump ( $trigger );
+	$desc .= '</table>';
 } catch ( Exception $e ) {
 	// Exception in ZabbixApi catched
 	echo $e->getMessage ();
 }
 ?>
 
-<div class="col-md-3">
+	<div class="col-md-3">
 		<h3>
 			<span class="label label-danger">DISA</span>
 		</h3>
@@ -101,7 +118,11 @@ try {
 		</h3>
 		<p class="count_info<?php if($count_1 < 1){ echo " count_zero";}?>"><?php echo $count_1;?></p>
 	</div>
+	<hr />
+	<div class="row">
+	<?php echo $desc; ?>
+	</div>
 </div>
-<hr />
+
 </body>
 </html>
