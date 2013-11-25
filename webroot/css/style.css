@@ -22,19 +22,19 @@ p.count_zero {
 }
 
 p.count_danger {
-	font-size: 240px;
+	font-size: 280px;
 	font-weight: 800;
 	color: #d9534f;
 }
 
 p.count_warning {
-	font-size: 120px;
+	font-size: 100px;
 	font-weight: 800;
 	color: #f0ad4e;
 }
 
 p.count_info {
-	font-size: 120px;
+	font-size: 100px;
 	font-weight: 800;
 	color: #5bc0de;
 }
