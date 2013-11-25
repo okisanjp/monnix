@@ -102,7 +102,6 @@ try {
 		<p class="count_info<?php if($count_1 < 1){ echo " count_zero";}?>"><?php echo $count_1;?></p>
 	</div>
 </div>
-<
 <hr />
 </body>
 </html>
