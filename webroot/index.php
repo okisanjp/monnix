@@ -27,7 +27,7 @@ require '../class/ZabbixApi.class.php';
 require_once '../config.php';
 try {
 	// connect to Zabbix API
-	$api = new ZabbixApi ( $zabbix_server_urlbase.'/zabbix/api_jsonrpc.php', $username, $password );
+	$api = new ZabbixApi ( $zabbix_server_urlbase . '/zabbix/api_jsonrpc.php', $username, $password );
 	// get trigger
 	$trigger = $api->triggerGet ( array (
 			"monitored" => 1,
@@ -37,7 +37,7 @@ try {
 			) 
 	) );
 	$count_1 = 0;
-$count_2 = 0;
+	$count_2 = 0;
 	$count_3 = 0;
 	$count_4 = 0;
 	$count_5 = 0;
@@ -46,12 +46,12 @@ $count_2 = 0;
 				'triggerid' => $t->triggerid 
 		) );
 		switch ($triggerObj [0]->priority) {
-case "5" :
-	$count_5 ++;
-	break;
-case "4" :
-	$count_4 ++;
-	break;
+			case "5" :
+				$count_5 ++;
+				break;
+			case "4" :
+				$count_4 ++;
+				break;
 			case "3" :
 				$count_3 ++;
 				break;
