@@ -10,11 +10,11 @@ require '../class/ZabbixApi.class.php';
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Refresh" content="30">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<script src="/js/bootstrap.min.js" type="text/javascript"
+	href="./css/bootstrap-theme.min.css" />
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script src="./js/bootstrap.min.js" type="text/javascript"
 	charset="utf-8"></script>
 <title>monnix</title>
 </head>
