@@ -1,7 +1,29 @@
 <?php
-// load ZabbixApi
-require '../class/ZabbixApiAbstract.class.php';
-require '../class/ZabbixApi.class.php';
+/**
+ *
+ * monnix for zabbix
+ * @link https://github.com/okisanjp/monnix 
+ * @author okisanjp <okisan.jp@gmail.com>
+ * @since PHP 5.1.6 or higher
+ * 
+ */
+
+/**
+ * Initialize
+ */
+$appRoot = @str_replace ( '/webroot', '', $_SERVER ['DOCUMENT_ROOT'] );
+if (empty ( $appRoot )) {
+	$appRoot = '../';
+}
+require_once $appRoot . '/config.php';
+
+/**
+ * PhpZabbixApi
+ *
+ * @link http://zabbixapi.confirm.ch/
+ */
+require_once $appRoot . '/class/ZabbixApiAbstract.class.php';
+require_once $appRoot . '/class/ZabbixApi.class.php';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -48,7 +70,7 @@ run(300).then(function() {
 	</h1>
 	<hr />
 <?php
-require_once '../config.php';
+
 try {
 	// connect to Zabbix API
 	$api = new ZabbixApi ( $zabbix_server_urlbase . '/api_jsonrpc.php', $username, $password );
