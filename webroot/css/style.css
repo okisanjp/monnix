@@ -65,3 +65,7 @@ p.count-info {
 p.count-zero {
 	color: #333;
 }
+table {
+	font-size:20px;
+	font-weight:500;
+}

@@ -70,6 +70,9 @@ class Monnix {
 				}
 				$desc .= '<tr><td><span class="label label-' . $facility . '">' . $level . '</span></td><td><strong>' . $t->hostname . '</strong></td><td>' . $t->description . '</td></tr>';
 			}
+			if(($count_1 + $count_2 + $count_3 + $count_4 + $count_5) == 0){
+				$desc = '<tr><td></td><td></td><td>No alerts occurred.</td></tr>';
+			}
 			return array (
 					$count_1,
 					$count_2,
