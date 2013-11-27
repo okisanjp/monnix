@@ -32,60 +32,68 @@ class Monnix {
 							'value' => 1 
 					) 
 			) );
-			$count_1 = 0;
-			$count_2 = 0;
-			$count_3 = 0;
-			$count_4 = 0;
-			$count_5 = 0;
-			$desc = '';
+			$alert = array (
+					'disaster' => '0',
+					'high' => '0',
+					'average' => '0',
+					'warning' => '0',
+					'information' => '0' 
+			);
+			$desc = array ();
 			foreach ( $trigger as $t ) {
 				$prioryty = $t->priority;
 				switch ($prioryty) {
 					case '5' :
-						$count_5 ++;
+						$alert['disaster'] ++;
 						$level = "Disaster";
 						$facility = 'danger';
 						break;
 					case '4' :
-						$count_4 ++;
+						$alert['high'] ++;
 						$level = "High";
 						$facility = 'danger';
 						break;
 					case '3' :
-						$count_3 ++;
+						$alert['average'] ++;
 						$level = "Average";
 						$facility = 'warning';
 						break;
 					case '2' :
-						$count_2 ++;
+						$alert['warning'] ++;
 						$level = "Warning";
 						$facility = 'warning';
 						break;
 					case '1' :
-						$count_1 ++;
+						$alert['information'] ++;
 						$level = "Information";
 						$facility = 'info';
 						break;
 					default :
 				}
-				$desc .= '<tr><td><span class="label label-' . $facility . '">' . $level . '</span></td><td><strong>' . $t->hostname . '</strong></td><td>' . $t->description . '</td></tr>';
+				$desc [] = array (
+						'facility' => $facility,
+						'level' => $level,
+						'hostname' => $t->hostname,
+						'description' => $t->description 
+				);
 			}
-			if (($count_1 + $count_2 + $count_3 + $count_4 + $count_5) == 0) {
-				$desc = '<tr><td></td><td></td><td>No alerts occurred.</td></tr>';
+			if (array_sum ( $alert ) == 0) {
+				$desc [] = array (
+						'facility' => '',
+						'level' => '',
+						'hostname' => '',
+						'description' => 'No alert occurred' 
+				);
 				$status = "panel-normal";
-			} elseif ($count_5 + $count_4 > 0) {
+			} elseif ($alert['disaster'] + $alert['high'] > 0) {
 				$status = "panel-danger";
-			} elseif ($count_3 + $count_2 > 0) {
+			} elseif ($alert['average'] + $alert['warning'] > 0) {
 				$status = "panel-warning";
-			} elseif ($count_1 > 0) {
+			} elseif ($alert['information'] > 0) {
 				$status = "panel-info";
 			}
 			return array (
-					$count_1,
-					$count_2,
-					$count_3,
-					$count_4,
-					$count_5,
+					$alert,
 					$desc,
 					$status 
 			);
