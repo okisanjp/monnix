@@ -61,7 +61,7 @@ class Monnix {
 						$level = "Warning";
 						$facility = 'warning';
 						break;
-					case '"1' :
+					case '1' :
 						$count_1 ++;
 						$level = "Information";
 						$facility = 'info';
