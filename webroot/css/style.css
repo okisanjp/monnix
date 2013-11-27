@@ -13,11 +13,11 @@ body {
 }
 
 .panel-info {
-	background: #fff;
+	background: #5bc0de;
 }
 
 .panel-warning {
-	background: #5bc0de;
+	background: #f0ad4e;
 }
 
 .panel-danger {
