@@ -17,7 +17,7 @@ $monnix = new Monnix ();
 /**
  * get alert status
  */
-list ( $count_1, $count_2, $count_3, $count_4, $count_5, $desc ) = $monnix->getAlert ();
+list ( $count_1, $count_2, $count_3, $count_4, $count_5, $desc, $status ) = $monnix->getAlert ();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -32,6 +32,7 @@ list ( $count_1, $count_2, $count_3, $count_4, $count_5, $desc ) = $monnix->getA
 <script src="./js/autoreload.js" type="text/javascript" charset="utf-8"></script>
 <title>monnix</title>
 </head>
+<body class="<?php echo $status;?>">
 <div class="container">
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<a class="navbar-brand" href="#">monnix</a>
@@ -40,56 +41,64 @@ list ( $count_1, $count_2, $count_3, $count_4, $count_5, $desc ) = $monnix->getA
 	<div class="progress progress-striped">
 		<div class="progress-bar progress-bar-success" role="progressbar" style="width: 100%" data-rate="0"></div>
 	</div>
-	<div class="col-md-6">
+	<div class="well well-sm well-panel">
 		<div class="row">
 			<div class="col-md-6">
-				<h3 class="head head-danger">Disaster</h3>
-				<p class="text-center count-danger <?php if($count_5 == 0){ echo " count-zero";}?>">
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="head head-danger">Disaster</h3>
+						<p class="text-center count-danger <?php if($count_5 == 0){ echo " count-zero";}?>">
 				<?php echo $count_5;?>
 				</p>
-			</div>
-			<div class="col-md-6">
-				<h3 class="head head-danger">High</h3>
-				<p class="text-center count-danger <?php if($count_4 == 0){ echo " count-zero";}?>">
+					</div>
+					<div class="col-md-6">
+						<h3 class="head head-danger">High</h3>
+						<p class="text-center count-danger <?php if($count_4 == 0){ echo " count-zero";}?>">
 				<?php echo $count_4;?>
 				</p>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<div class="row">
-			<div class="col-md-4">
-				<h3 class="head head-warning">Average</h3>
-				<p class="text-center count-warning <?php if($count_3 == 0){ echo " count-zero";}?>">
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-4">
+						<h3 class="head head-warning">Average</h3>
+						<p class="text-center count-warning <?php if($count_3 == 0){ echo " count-zero";}?>">
 				<?php echo $count_3;?>
 				</p>
-			</div>
-			<div class="col-md-4">
-				<h3 class="head head-warning">Warning</h3>
-				<p class="text-center count-warning <?php if($count_2 == 0){ echo " count-zero";}?>">
+					</div>
+					<div class="col-md-4">
+						<h3 class="head head-warning">Warning</h3>
+						<p class="text-center count-warning <?php if($count_2 == 0){ echo " count-zero";}?>">
 				<?php echo $count_2;?>
 				</p>
-			</div>
-			<div class="col-md-4">
-				<h3 class="head head-info">Information</h3>
-				<p class="text-center count-info <?php if($count_1 == 0){ echo " count-zero";}?>">
+					</div>
+					<div class="col-md-4">
+						<h3 class="head head-info">Information</h3>
+						<p class="text-center count-info <?php if($count_1 == 0){ echo " count-zero";}?>">
 				<?php echo $count_1;?>
 				</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="container">
-	<table class="table">
-	<thead>
-	<tr><th>Priority</th><th>Host</th><th>Desc</th></tr>
-	</thead>
-	<tbody>
+	<div class="well well-sm well-panel">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Priority</th>
+					<th>Host</th>
+					<th>Desc</th>
+				</tr>
+			</thead>
+			<tbody>
     <?php echo $desc; ?>
     </tbody>
-    </table>
+		</table>
+	</div>
 </div>
-
-
 </body>
 </html>

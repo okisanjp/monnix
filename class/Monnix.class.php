@@ -8,7 +8,7 @@
 
 /**
  * PhpZabbixApi
- * 
+ *
  * @link http://zabbixapi.confirm.ch/
  */
 require_once APP_ROOT . '/class/ZabbixApiAbstract.class.php';
@@ -70,8 +70,15 @@ class Monnix {
 				}
 				$desc .= '<tr><td><span class="label label-' . $facility . '">' . $level . '</span></td><td><strong>' . $t->hostname . '</strong></td><td>' . $t->description . '</td></tr>';
 			}
-			if(($count_1 + $count_2 + $count_3 + $count_4 + $count_5) == 0){
+			if (($count_1 + $count_2 + $count_3 + $count_4 + $count_5) == 0) {
 				$desc = '<tr><td></td><td></td><td>No alerts occurred.</td></tr>';
+				$status = "panel-normal";
+			} elseif ($count_5 + $count_4 > 0) {
+				$status = "panel-danger";
+			} elseif ($count_3 + $count_2 > 0) {
+				$status = "panel-warning";
+			} elseif ($count_1 > 0) {
+				$status = "panel-info";
 			}
 			return array (
 					$count_1,
@@ -79,12 +86,12 @@ class Monnix {
 					$count_3,
 					$count_4,
 					$count_5,
-					$desc 
+					$desc,
+					$status 
 			);
 		} catch ( Exception $e ) {
 			// Exception in ZabbixApi catched
 			echo $e->getMessage ();
 		}
 	}
-	
 }

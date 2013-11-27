@@ -1,14 +1,27 @@
 @CHARSET "UTF-8";
 
-* {
-	}
-
 body {
 	padding-top: 70px;
 }
 
 .navbar-brand {
 	font-weight: 600;
+}
+
+.panel-normal {
+	background: #fff;
+}
+
+.panel-info {
+	background: #fff;
+}
+
+.panel-warning {
+	background: #5bc0de;
+}
+
+.panel-danger {
+	background: #d9534f;
 }
 
 h1 {
@@ -18,6 +31,10 @@ h1 {
 
 h1>small {
 	font-size: 16px;
+}
+
+.well-panel {
+	background: #fff;
 }
 
 .head {
@@ -62,10 +79,12 @@ p.count-info {
 	font-weight: 800;
 	color: #5bc0de;
 }
+
 p.count-zero {
 	color: #333;
 }
+
 table {
-	font-size:20px;
-	font-weight:500;
+	font-size: 20px;
+	font-weight: 500;
 }
