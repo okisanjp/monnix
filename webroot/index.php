@@ -37,6 +37,9 @@ list ( $alert, $desc, $status ) = $monnix->getAlert ();
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<a class="navbar-brand" href="#">monnix</a>
 			<p class="navbar-text">the monitoring display</p>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Graph</a></li>
+			</ul>
 		</nav>
 		<div class="well well-sm well-panel">
 			<div class="row">
@@ -68,7 +71,9 @@ list ( $alert, $desc, $status ) = $monnix->getAlert ();
 						</div>
 					</div>
 					<hr />
-					<h4><span class="glyphicon glyphicon-refresh"></span> Until the next update</h4>
+					<h4>
+						<span class="glyphicon glyphicon-refresh"></span> Until the next update
+					</h4>
 					<div class="progress progress-striped">
 						<div class="progress-bar progress-bar-success" role="progressbar" style="width: 100%" data-rate="0"></div>
 					</div>
