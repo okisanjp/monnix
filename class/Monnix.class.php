@@ -11,8 +11,8 @@
  *
  * @link http://zabbixapi.confirm.ch/
  */
-require_once APP_ROOT . '/class/ZabbixApiAbstract.class.php';
-require_once APP_ROOT . '/class/ZabbixApi.class.php';
+require_once 'ZabbixApiAbstract.class.php';
+require_once 'ZabbixApi.class.php';
 class Monnix {
 	public function getAlert() {
 		try {
@@ -97,6 +97,17 @@ class Monnix {
 					$desc,
 					$status 
 			);
+		} catch ( Exception $e ) {
+			// Exception in ZabbixApi catched
+			echo $e->getMessage ();
+		}
+	}
+	public function getGraph() {
+		try {
+			// connect to Zabbix API
+			$api = new ZabbixApi ( ZABBBIX_SERVER_URLBASE . '/api_jsonrpc.php', USERNAME, PASSWORD );
+			
+			//return $result;
 		} catch ( Exception $e ) {
 			// Exception in ZabbixApi catched
 			echo $e->getMessage ();

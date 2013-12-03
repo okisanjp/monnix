@@ -5,42 +5,23 @@
  * @author    okisanjp <okisan.jp@gmail.com>
  * @copyright GNU General Public License
  */
-
-/**
- * Intialize
- */
-define ( 'APP_ROOT', @str_replace ( '/webroot', '', $_SERVER ['DOCUMENT_ROOT'] ) );
-require_once APP_ROOT . '/config.php';
-require_once APP_ROOT . '/class/Monnix.class.php';
-$monnix = new Monnix ();
+require_once '../include/init.php';
 
 /**
  * get alert status
  */
+$monnix = new Monnix ();
 list ( $alert, $desc, $status ) = $monnix->getAlert ();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css" />
-<link rel="stylesheet" type="text/css" href="./css/style.css" />
-<script src="./js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/autoreload.js" type="text/javascript" charset="utf-8"></script>
+<?php include_once '../include/htmlHead.php';?>
 <title>monnix</title>
 </head>
 <body class="<?php echo $status;?>">
 	<div class="container">
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<a class="navbar-brand" href="#">monnix</a>
-			<p class="navbar-text">the monitoring display</p>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Graph</a></li>
-			</ul>
-		</nav>
+		<?php include_once '../include/navbar.php';?>
 		<div class="well well-sm well-panel">
 			<div class="row">
 				<div class="col-md-6">
