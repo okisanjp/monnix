@@ -15,6 +15,7 @@ list ( $result ) = $monnix->getGraph ();
 </head>
 <body class="">
 	<div class="container">
+	<?php include_once '../include/navbar.php';?>
 	<?php var_dump($result);?>
 	</div>
 </body>
