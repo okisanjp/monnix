@@ -19,7 +19,7 @@ class Monnix {
 			// connect to Zabbix API
 			$api = new ZabbixApi ( ZABBBIX_SERVER_URLBASE . '/api_jsonrpc.php', USERNAME, PASSWORD );
 			// get trigger
-			$trigger = $api->triggerGet ( array (
+			$result = $api->triggerGet ( array (
 					'monitored' => 1,
 					'expandData' => 1,
 					'output' => array (
@@ -40,31 +40,31 @@ class Monnix {
 					'information' => '0' 
 			);
 			$desc = array ();
-			foreach ( $trigger as $t ) {
-				$prioryty = $t->priority;
+			foreach ( $result as $r ) {
+				$prioryty = $r->priority;
 				switch ($prioryty) {
 					case '5' :
-						$alert['disaster'] ++;
+						$alert ['disaster'] ++;
 						$level = "Disaster";
 						$facility = 'danger';
 						break;
 					case '4' :
-						$alert['high'] ++;
+						$alert ['high'] ++;
 						$level = "High";
 						$facility = 'danger';
 						break;
 					case '3' :
-						$alert['average'] ++;
+						$alert ['average'] ++;
 						$level = "Average";
 						$facility = 'warning';
 						break;
 					case '2' :
-						$alert['warning'] ++;
+						$alert ['warning'] ++;
 						$level = "Warning";
 						$facility = 'warning';
 						break;
 					case '1' :
-						$alert['information'] ++;
+						$alert ['information'] ++;
 						$level = "Information";
 						$facility = 'info';
 						break;
@@ -73,8 +73,8 @@ class Monnix {
 				$desc [] = array (
 						'facility' => $facility,
 						'level' => $level,
-						'hostname' => $t->hostname,
-						'description' => $t->description 
+						'hostname' => $r->hostname,
+						'description' => $r->description 
 				);
 			}
 			if (array_sum ( $alert ) == 0) {
@@ -85,11 +85,11 @@ class Monnix {
 						'description' => 'No alert occurred' 
 				);
 				$status = "panel-normal";
-			} elseif ($alert['disaster'] + $alert['high'] > 0) {
+			} elseif ($alert ['disaster'] + $alert ['high'] > 0) {
 				$status = "panel-danger";
-			} elseif ($alert['average'] + $alert['warning'] > 0) {
+			} elseif ($alert ['average'] + $alert ['warning'] > 0) {
 				$status = "panel-warning";
-			} elseif ($alert['information'] > 0) {
+			} elseif ($alert ['information'] > 0) {
 				$status = "panel-info";
 			}
 			return array (
@@ -102,12 +102,33 @@ class Monnix {
 			echo $e->getMessage ();
 		}
 	}
+	public function getHost() {
+		try {
+			// connect to Zabbix API
+			$api = new ZabbixApi ( ZABBBIX_SERVER_URLBASE . '/api_jsonrpc.php', USERNAME, PASSWORD );
+			$result = $api->hostGet ( array (
+					'output' => array (
+							"name"
+					),
+					'limit' => 1
+			) );
+			return $result;
+		} catch ( Exception $e ) {
+			// Exception in ZabbixApi catched
+			echo $e->getMessage ();
+		}
+	}
 	public function getGraph() {
 		try {
 			// connect to Zabbix API
 			$api = new ZabbixApi ( ZABBBIX_SERVER_URLBASE . '/api_jsonrpc.php', USERNAME, PASSWORD );
-			
-			//return $result;
+			$result = $api->graphGet ( array (
+					'output' => array (
+							"name"
+					),
+					'limit' => 1 
+			) );
+			return $result;
 		} catch ( Exception $e ) {
 			// Exception in ZabbixApi catched
 			echo $e->getMessage ();

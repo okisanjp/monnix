@@ -37,6 +37,18 @@ class MonnixTest extends PHPUnit_Framework_TestCase
     {
         $result = $this->object->getAlert();
         $this->assertNotNull($result);
+        //var_dump($result);
+    }
+
+    /**
+     * @covers Monnix::getHost
+     * @todo   Implement testGetHost().
+     */
+    public function testGetHost()
+    {
+    	$result = $this->object->getHost();
+    	$this->assertNotNull($result);
+    	var_dump($result);
     }
 
     /**
@@ -47,5 +59,6 @@ class MonnixTest extends PHPUnit_Framework_TestCase
     {
     	$result = $this->object->getGraph();
     	$this->assertNotNull($result);
+    	//var_dump($result);
     }
 }
