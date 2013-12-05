@@ -1,10 +1,4 @@
 <?php
-/**
- * monnix for zabbix
- * @link      https://github.com/okisanjp/monnix
- * @author    okisanjp <okisan.jp@gmail.com>
- * @copyright GNU General Public License
- */
 require_once '../include/init.php';
 
 /**
